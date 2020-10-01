@@ -15,19 +15,19 @@
 <body>
     <div class="mainCont">
         <div class="Date common">
-            <p class="datecs">Monday,27th aprail</p>
+            <p class="datecs"></p>
         </div>
         <div class="time common">
-            <p class="timecs">6:27am</p>
+            <p class="timecs"></p>
         </div>
         <div class="location common">
-            <p>Pakistan</p>
+            <p>{%location%},{%country%}</p>
         </div>
-        <div class="wethCondIcon common">
+        <div class="wethCondIcon common" id="logoAnim">
             <i style="color:#fff;transform: scale(6);" class="fas fa-cloud-meatball"></i>
         </div>
         <div class="wethTemp common">
-            <p>10&deg;</p>
+            <p>{%degreeVal%}10&deg;</p>
         </div>
         <div class="weekDay common">
             <p class="weekdaycs">Monday</p>
@@ -57,5 +57,6 @@
     </div>
 </body>
 <script src="wetherApp.js"></script>
+<!-- <script src="wetherAppjson.js"></script> -->
 
 </html>
