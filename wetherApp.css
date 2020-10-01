@@ -5,7 +5,7 @@
 }
 
 body {
-    height: 100vh;
+    height: 90vh;
     width: 100vw;
     background: linear-gradient(150deg, rgb(76, 56, 146) 5%, rgb(169, 62, 142) 100%);
     background-repeat: no-repeat;
@@ -13,7 +13,7 @@ body {
 
 .mainCont {
     height: 60vh;
-    width: 50vw;
+    width: 55vw;
     /* border: 1px solid black; */
     margin-right: auto;
     margin-left: auto;
@@ -90,6 +90,20 @@ body {
     text-align: center
 }
 
-.commonT {
-    /* font-size: 11px; */
+#logoAnim {
+    animation: scaling 2s ease-in-out infinite;
+}
+
+@keyframes scaling {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
+    }
 }
