@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>WetherApi </title>
+    <link rel="icon"
+        href="https://images.vexels.com/media/users/3/151198/isolated/preview/b2eb2bf84c2e3e94b0df89b02a452901-raining-cloud-doodle-by-vexels.png"
+        type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"
+        integrity="sha512-PgQMlq+nqFLV4ylk1gwUOgm6CtIIXkKwaIHp/PAIWHzig/lKZSEGKEysh0TCVbHJXCLN7WetD8TFecIky75ZfQ=="
+        crossorigin="anonymous" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: century gothic;
+        }
+
+        body {
+            height: 90vh;
+            width: 100vw;
+            background: linear-gradient(150deg, rgb(76, 56, 146) 5%, rgb(169, 62, 142) 100%);
+            background-repeat: no-repeat;
+        }
+
+        .mainCont {
+            height: 60vh;
+            width: 55vw;
+            /* border: 1px solid black; */
+            margin-right: auto;
+            margin-left: auto;
+            position: relative;
+            margin-top: 20%;
+            overflow: hidden;
+            border-radius: 20px;
+            /* background-color: rgb(70, 175, 207); */
+            background: linear-gradient(240deg, rgb(70, 175, 207) 35%, rgb(0, 212, 255) 100%);
+            box-shadow: 0px 0px 99px 9px rgba(0, 0, 0, 0.72);
+        }
+
+        .common {
+            color: white;
+            position: absolute;
+            /* margin: 1%; */
+            align-items: center;
+            height: 10%;
+            width: 100%;
+            /* padding: 2%; */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* border: 1px solid black; */
+        }
+
+        .Date {
+            top: 0;
+        }
+
+        .datecs {
+            left: 20%;
+        }
+
+        .time {
+            top: 10%;
+        }
+
+        .location {
+            top: 20%;
+        }
+
+        .wethCondIcon {
+            height: 30%;
+            width: 100%;
+            top: 30%;
+            /* border: 1px solid black; */
+        }
+
+        .wethTemp {
+            height: 10%;
+            width: 100%;
+            top: 60%;
+        }
+
+        .weekDay {
+            height: 10%;
+            width: 100%;
+            top: 70%;
+        }
+
+        .details {
+            height: 20%;
+            width: 100%;
+            top: 80%;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            margin-right: 6%;
+            margin-left: 1%;
+        }
+
+        .mainCont>.common>p {
+            text-align: center
+        }
+
+        #logoAnim {
+            animation: scaling 2s ease-in-out infinite;
+        }
+
+        @keyframes scaling {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.2);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="mainCont">
+        <div class="Date common">
+            <p class="datecs"></p>
+        </div>
+        <div class="time common">
+            <p class="timecs"></p>
+        </div>
+        <div class="location common">
+            <p>{%location%},{%country%}</p>
+        </div>
+        <div class="wethCondIcon common" id="logoAnim">
+            <i style="color:#fff;transform: scale(6);" class="fas fa-cloud-meatball"></i>
+        </div>
+        <div class="wethTemp common">
+            <p>{%degree%}&deg;</p>
+        </div>
+        <div class="weekDay common">
+            <p class="weekdaycs">Monday</p>
+        </div>
+        <div class="details common">
+            <div class="timelyInfo1 commonT">
+                <p>4am</p>
+                <i style="color:#fff" class="fas fa-cloud-meatball"></i>
+                <p>10&deg;</p>
+            </div>
+            <div class="timelyInfo2 commonT">
+                <p>4am</p>
+                <i style="color:#fff" class="fas fa-cloud-meatball"></i>
+                <p>10&deg;</p>
+            </div>
+            <div class="timelyInfo3 commonT">
+                <p>4am</p>
+                <i style="color:#fff" class="fas fa-cloud-meatball"></i>
+                <p>10&deg;</p>
+            </div>
+            <div class="timelyInfo4 commonT">
+                <p>4am</p>
+                <i style="color:#fff" class="fas fa-cloud-meatball"></i>
+                <p>10&deg;</p>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    window.onload = () => {
+        var date = document.querySelector(".datecs");
+        var time = document.querySelector(".timecs");
+        var weekday = document.querySelector(".weekdaycs");
+        const getCurrDay = () => {
+            var d = new Date();
+            var weekdays = new Array(7);
+            weekdays[0] = "Sunday";
+            weekdays[1] = "Monday";
+            weekdays[2] = "Tuesday";
+            weekdays[3] = "Wednesday";
+            weekdays[4] = "Thursday";
+            weekdays[5] = "Friday";
+            weekdays[6] = "Saturday";
+            var n = weekdays[d.getDay()];
+            return n;
+        }
+        const getCurrMonth = () => {
+            var d = new Date();
+            let yearMonth = ["January", "Fabuary", "March", "Aprail", "May", "June", "July", "August",
+                "September", "Octuber", "November", "December"
+            ];
+            var res = yearMonth[d.getMonth()];
+            return res;
+        }
+        date.innerHTML = `${getCurrDay()} , ${new Date().getDate()} ${getCurrMonth()}`;
+        const getCurrTime = () => {
+            let hours = new Date().getHours();
+            let minutes = new Date().getMinutes();
+            let sec = new Date().getSeconds();
+            let MN = "am";
+            if (hours > 11) {
+                MN = "pm";
+                if (houes > 12) {
+                    hours -= 12;
+                }
+            }
+            if (minutes < 10) {
+                minutes = "0" + minutes;
+            }
+            if (sec < 10) {
+                sec = "0" + sec;
+            }
+            time.innerHTML = `${hours}:${minutes}:${sec} ${MN}`;
+        }
+
+        // time.innerHTML = `${getCurrTime()}`;
+        setInterval(getCurrTime, 1000);
+        weekday.innerHTML = `${getCurrDay()}`;
+    }
+</script>
+<!-- <script src="wetherAppjson.js"></script> -->
+
+</html>
