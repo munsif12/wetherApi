@@ -2,12 +2,12 @@ const http = require("http");
 const fs = require("fs");
 const requests = require("requests");
 const express = require("express");
-const readFile = fs.readFileSync("wetherApp.html", "utf-8");
+const readFile = fs.readFileSync("wetAppComOneFile.html", "utf-8");
 
 const app = express();
 app.use('/assets', express.static('assets'));
 const setValues = (readFile, val) => {
-    let returndata = readFile.replace("{%degree%}", val.main.temp);
+    let returndata = readFile.replace("{%degree%}", Math.ceil((val.main.temp) / 10));
     returndata = returndata.replace("{%country%}", val.sys.country);
     returndata = returndata.replace("{%location%}", val.name);
     returndata = returndata.replace("{%tempIconStatus%}", val.weather[0].main);
