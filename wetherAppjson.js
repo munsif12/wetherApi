@@ -1,11 +1,16 @@
 const http = require("http");
 const fs = require("fs");
+const path = require('path');
 const requests = require("requests");
 const express = require("express");
-const readFile = fs.readFileSync("wetAppComOneFile.html", "utf-8");
-
 const app = express();
-app.use('/assets', express.static('assets'));
+console.log(path.join(__dirname, "/assets"));
+//we cant use express.static() becoz static method is use to server static html and js files and we are using
+var absolutePath = path.join(__dirname, "/assets");
+app.use(express.static(absolutePath));
+// app.use('/assets', express.static('assets'));
+
+const readFile = fs.readFileSync("wetAppComOneFile.html", "utf-8");
 const setValues = (readFile, val) => {
     let returndata = readFile.replace("{%degree%}", Math.ceil((val.main.temp) / 10));
     returndata = returndata.replace("{%country%}", val.sys.country);
@@ -31,6 +36,7 @@ const server = http.createServer((req, res) => {
             })
             .on("end", (err) => {
                 if (err) {
+                    // res.end(err);
                     return console.log('connection error' + err);
                 }
                 res.end();
